@@ -1,0 +1,10 @@
+{
+  "networks": [
+    {
+      "name": "bhasha_bridge"
+    }
+  ],
+  "actions": {
+    "version": 1
+  }
+}
