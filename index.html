@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bhasha Bridge — notices in your language, every number checked</title>
+  <meta name="description" content="An open agentic website that puts English notices into 12 Indian languages in your browser, with your own AI key, and checks with code that every date, time, amount, phone number and link survived.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="js/app.js"></script>
+  <script type="module" src="js/lock-demo.js"></script>
+  <script type="module" src="site.js"></script>
+</head>
+<body>
+  <a class="skip" href="#notice">Skip to the notice</a>
+  <header class="top">
+    <div class="wrap top-inner">
+      <p class="brand"><span aria-hidden="true">🌉</span> Bhasha Bridge</p>
+      <nav aria-label="Sections">
+        <a href="#notice">Notice</a>
+        <a href="#paste">Your text</a>
+        <a href="#lock">Number lock</a>
+        <a href="#builders">For agent sites</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero wrap" aria-labelledby="hero-title">
+      <h1 id="hero-title">English notices, in your language.<br><span>Every number checked.</span></h1>
+      <p class="lede">A wrong date on a water-cut notice, a dropped digit in a helpline, a fee that changed in translation: these are the mistakes that hurt. Bhasha Bridge lets an AI model translate, then checks with plain code that every date, time, amount, phone number and link is still exactly right before it shows anything.</p>
+      <ul class="pillars">
+        <li><strong>12 Indian languages</strong> Hindi, Bengali, Marathi, Telugu, Tamil, Gujarati, Urdu, Kannada, Odia, Malayalam, Punjabi, Assamese. Easy-read or standard.</li>
+        <li><strong>Number lock</strong> Code, not the model, compares numbers in every script: ४:३० = 4:30, ₹1,20,000 = ₹120000.</li>
+        <li><strong>Your browser, your key</strong> Runs as an open agentic website. No server, no account. Any agent site can call it by URL.</li>
+      </ul>
+    </section>
+
+    <div class="wrap layout">
+      <section id="notice" class="card notice-card" aria-labelledby="notice-title">
+        <div class="notice-tools">
+          <p class="eyebrow">Try it on a sample notice</p>
+          <div id="lang-bar" class="lang-bar" role="group" aria-label="Show the notice in"></div>
+          <fieldset class="levels">
+            <legend>Reading level</legend>
+            <label><input type="radio" name="level" value="simple" checked> Simple (easy-read)</label>
+            <label><input type="radio" name="level" value="standard"> Standard</label>
+          </fieldset>
+        </div>
+
+        <article class="notice" aria-live="polite">
+          <p id="notice-title" class="notice-title"></p>
+          <section id="sec-headline" class="notice-section lead-section">
+            <h2 id="sec-headline-heading"></h2>
+            <p id="sec-headline-text"></p>
+            <p id="sec-headline-badge" class="lock-badge" hidden></p>
+          </section>
+          <section id="sec-prepare" class="notice-section">
+            <h3 id="sec-prepare-heading"></h3>
+            <p id="sec-prepare-text"></p>
+            <p id="sec-prepare-badge" class="lock-badge" hidden></p>
+          </section>
+          <section id="sec-tanker" class="notice-section">
+            <h3 id="sec-tanker-heading"></h3>
+            <p id="sec-tanker-text"></p>
+            <p id="sec-tanker-badge" class="lock-badge" hidden></p>
+          </section>
+          <section id="sec-bills" class="notice-section">
+            <h3 id="sec-bills-heading"></h3>
+            <p id="sec-bills-text"></p>
+            <p id="sec-bills-badge" class="lock-badge" hidden></p>
+          </section>
+          <section id="sec-help" class="notice-section">
+            <h3 id="sec-help-heading"></h3>
+            <p id="sec-help-text"></p>
+            <p id="sec-help-badge" class="lock-badge" hidden></p>
+          </section>
+        </article>
+        <div class="notice-foot">
+          <p id="notice-status" class="notice-status" role="status"></p>
+          <button id="show-original" type="button" class="ghost">Show original English</button>
+        </div>
+        <p id="lock-log" class="lock-log" role="status" hidden></p>
+      </section>
+
+      <section id="assistant" class="card assistant" aria-labelledby="assistant-heading">
+        <h2 id="assistant-heading">Ask Bhasha Bridge</h2>
+        <p class="assistant-note">Runs in your browser. Your messages and this page's text go only to the AI provider you choose in the settings below, with your own key. A free <a href="https://ai.google.dev/gemini-api/docs/api-key" rel="noopener">Google AI Studio key</a> works.</p>
+        <p id="assistant-status" role="status">Connecting the assistant… If this message stays, the assistant could not load. The notice is still readable in English.</p>
+        <div id="agent-app">
+          <div data-ns-slot="header"></div>
+          <div class="assistant-panels">
+            <div data-ns-slot="chat"></div>
+            <div data-ns-slot="agents"></div>
+          </div>
+          <div data-ns-slot="settings"></div>
+        </div>
+      </section>
+    </div>
+
+    <section id="paste" class="wrap card paste" aria-labelledby="paste-heading">
+      <h2 id="paste-heading">Translate your own text</h2>
+      <p>Paste an English notice, bill, school circular or SMS. The assistant translates it; the number lock checks it against what you pasted.</p>
+      <label for="paste-source">English text</label>
+      <textarea id="paste-source" rows="6" maxlength="4000" placeholder="Example: Your electricity bill of ₹1,240 for October is due on 25-11-2026. Pay at https://example.org/pay or call 1912."></textarea>
+      <div class="paste-row">
+        <label for="paste-lang">Into</label>
+        <select id="paste-lang"></select>
+        <button id="paste-translate" type="button">Translate with number lock</button>
+      </div>
+      <p id="paste-note" class="paste-note" role="status"></p>
+      <div id="paste-result" class="paste-result" hidden>
+        <p id="paste-result-text"></p>
+        <p id="paste-badge" class="lock-badge"></p>
+      </div>
+    </section>
+
+    <section id="lock" class="wrap card lock" aria-labelledby="lock-heading">
+      <h2 id="lock-heading">See the number lock work — no key needed</h2>
+      <p>This box runs the same check the page runs on every translation. The sample translation below changed the time and dropped part of the date. Edit either side.</p>
+      <div class="lock-grid">
+        <div>
+          <label for="lock-source">Original</label>
+          <textarea id="lock-source" rows="4">Water supply in Wards 12, 13 and 14 will be stopped from 6:00 AM to 4:30 PM on 19-12-2026. Helpline: 1800-000-0000.</textarea>
+        </div>
+        <div>
+          <label for="lock-translation">Translation</label>
+          <textarea id="lock-translation" rows="4" lang="hi">वार्ड १२, १३ और १४ में १९ दिसंबर २०२६ को सुबह ६:०० से शाम ४:०० बजे तक पानी बंद रहेगा। हेल्पलाइन: 1800-000-0000.</textarea>
+        </div>
+      </div>
+      <div id="lock-result" class="lock-result" role="status" aria-live="polite"></div>
+    </section>
+
+    <section id="builders" class="wrap card builders" aria-labelledby="builders-heading">
+      <h2 id="builders-heading">Give your agentic site 12 languages with one line</h2>
+      <p>Bhasha Bridge publishes its agent network under the <a href="https://github.com/cognizant-ai-labs/agentic-web" rel="noopener">Open Agentic Web</a> spec. Add its network URL to one of your agent's <code>tools</code>, and allow this origin in your <code>agent-manifest.json</code>:</p>
+      <pre><code id="peer-snippet">"tools": ["https://sarveshkh786.github.io/bhasha-bridge/bhasha_bridge"]
+
+"allowed_peers": ["https://sarveshkh786.github.io"]</code></pre>
+      <p>Your visitor approves the call on a consent card. The network then runs in their browser on their own key and model, and answers with the translation plus a <code>Numbers kept:</code> line, so your page can run the same check. The number lock is a dependency-free module you can copy: <a href="js/number-lock.js"><code>js/number-lock.js</code></a>.</p>
+      <ul class="files">
+        <li><a href="agent-manifest.json"><code>agent-manifest.json</code></a> — the site's manifest</li>
+        <li><a href="bhasha_bridge.network.json"><code>bhasha_bridge.network.json</code></a> — the agent network (public by design)</li>
+        <li><a href="site-actions.js"><code>site-actions.js</code></a> — the four page tools the agent can call</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="wrap foot">
+    <p>The Shantinagar notice is fictional; its phone number and link are placeholders. Translations are made by the AI model you choose and are not certified for legal or official use.</p>
+    <p><a href="https://github.com/sarveshkh786/bhasha-bridge" rel="noopener">Source on GitHub</a> · Apache-2.0 · Built for the Open Agentic Web Challenge</p>
+  </footer>
+</body>
+</html>

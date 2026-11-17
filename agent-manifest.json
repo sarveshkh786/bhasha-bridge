@@ -1,0 +1,82 @@
+{
+  "brand": "🌉 Bhasha Bridge",
+  "networks": [
+    {
+      "name": "bhasha_bridge",
+      "front_man": "bhasha_translator",
+      "hocon": "./bhasha_bridge.network.json",
+      "description": "I put English notices and short texts into 12 Indian languages, and the page checks with code that every number, link and email stayed the same.",
+      "tags": [
+        "agentified-website",
+        "translation",
+        "accessibility",
+        "indian-languages"
+      ],
+      "sample_queries": [
+        "Show the whole notice in simple Hindi.",
+        "Translate only the tanker section into Tamil.",
+        "Translate the text in the paste box into easy Bengali.",
+        "Switch everything back to English.",
+        "Can you translate this notice into French?"
+      ]
+    }
+  ],
+  "llm_router": {
+    "base_url": "https://generativelanguage.googleapis.com/v1beta/openai",
+    "mock": false,
+    "byok_router": "https://generativelanguage.googleapis.com/v1beta/openai"
+  },
+  "allowed_peers": [],
+  "peer_policy": {
+    "mode": "closed",
+    "deny_origins": [],
+    "note": "Local agents and page-local actions only."
+  },
+  "agent_mcp": {
+    "protocol": "nsdeploy-agent-mcp/v1",
+    "network": "bhasha_bridge",
+    "front_man": "bhasha_translator",
+    "available": false,
+    "reason": "This is a static bundle; a public MCP facade requires an application host."
+  },
+  "theme": {
+    "primary": "#9a3412"
+  },
+  "linking": {
+    "protocol": "nsdeploy-link/v1",
+    "exports": [
+      {
+        "network": "bhasha_bridge",
+        "front_man": "bhasha_translator",
+        "aliases": [
+          "bhasha_bridge",
+          "bhasha_translator"
+        ],
+        "url": "bhasha_bridge"
+      }
+    ],
+    "imports": [],
+    "link_updates": {
+      "mode": "browser-local"
+    }
+  },
+  "deployment": {
+    "mode": "static",
+    "self_contained_runtime": true,
+    "browser_mock": false,
+    "direct_byok": true,
+    "direct_mcp_requires_cors": true,
+    "public_mcp_facade": false
+  },
+  "actions": {
+    "version": 1,
+    "module": "./site-actions.js",
+    "bridge": "./bridge/action-bridge.html",
+    "agentTools": [
+      "get_notice",
+      "show_translation",
+      "show_original",
+      "show_pasted_translation"
+    ]
+  }
+}
